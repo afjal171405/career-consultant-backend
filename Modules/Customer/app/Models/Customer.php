@@ -14,6 +14,7 @@ class  Customer extends Model
 
     public static function getColumns(): array
     {
+
        return [
 [
         'name' => 'sn',
