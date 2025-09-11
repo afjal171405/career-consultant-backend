@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers;
+namespace modules\Admin\app\Http\Controllers;
 
+use modules\Admin\app\Models\Office;
 use YajTech\Crud\Controllers\CrudController;
-use Modules\Admin\Models\Office;
 use Modules\Admin\Http\Resources\OfficeListResource;
 use Modules\Admin\Http\Resources\OfficeDetailResource;
 use Modules\Admin\Http\Requests\OfficeCreateRequest;

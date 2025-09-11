@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Customer\Http\Controllers;
+namespace modules\Customer\app\Http\Controllers;
 
 use YajTech\Crud\Controllers\CrudController;
-use Modules\Customer\Models\EducationHistory;
+use modules\Customer\app\Models\EducationHistory;
 use Modules\Customer\Http\Resources\EducationHistoryListResource;
 use Modules\Customer\Http\Resources\EducationHistoryDetailResource;
 use Modules\Customer\Http\Requests\EducationHistoryCreateRequest;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Customer\Http\Controllers;
+namespace modules\Customer\app\Http\Controllers;
 
 use YajTech\Crud\Controllers\CrudController;
-use Modules\Customer\Models\TestScore;
+use modules\Customer\app\Models\TestScore;
 use Modules\Customer\Http\Resources\TestScoreListResource;
 use Modules\Customer\Http\Resources\TestScoreDetailResource;
 use Modules\Customer\Http\Requests\TestScoreCreateRequest;

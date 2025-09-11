@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Customer\Http\Controllers;
+namespace modules\Customer\app\Http\Controllers;
 
 use YajTech\Crud\Controllers\CrudController;
-use Modules\Customer\Models\FinancialProfile;
+use modules\Customer\app\Models\FinancialProfile;
 use Modules\Customer\Http\Resources\FinancialProfileListResource;
 use Modules\Customer\Http\Resources\FinancialProfileDetailResource;
 use Modules\Customer\Http\Requests\FinancialProfileCreateRequest;

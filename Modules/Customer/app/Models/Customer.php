@@ -1,16 +1,17 @@
 <?php
 
-namespace Modules\Customer\app\Models;
+namespace modules\Customer\app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 use YajTech\Crud\Traits\CrudModel;
 use YajTech\Crud\Traits\CrudEventListener;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class  Customer extends Model
+class  Customer extends Authenticatable
 {
-    use HasFactory, CrudModel, SoftDeletes, CrudEventListener;
+    use HasFactory, HasApiTokens, CrudModel, SoftDeletes, CrudEventListener;
 
     public static function getColumns(): array
     {
@@ -80,7 +81,7 @@ class  Customer extends Model
 ;
     }
 
-    protected $fillable = [ 'extra' ];
+    protected $fillable = ['name','email','phone_number','password','extra' ];
 
     protected $casts = [
         'extra' => 'array'

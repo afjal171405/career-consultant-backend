@@ -8,7 +8,7 @@ use YajTech\Crud\Traits\CrudModel;
 use YajTech\Crud\Traits\CrudEventListener;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class  Office extends Model
+class  SmsLog extends Model
 {
     use HasFactory, CrudModel, SoftDeletes, CrudEventListener;
 

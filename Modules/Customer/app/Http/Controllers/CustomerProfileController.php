@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Customer\Http\Controllers;
+namespace modules\Customer\app\Http\Controllers;
 
 use YajTech\Crud\Controllers\CrudController;
-use Modules\Customer\Models\CustomerProfile;
+use modules\Customer\app\Models\CustomerProfile;
 use Modules\Customer\Http\Resources\CustomerProfileListResource;
 use Modules\Customer\Http\Resources\CustomerProfileDetailResource;
 use Modules\Customer\Http\Requests\CustomerProfileCreateRequest;

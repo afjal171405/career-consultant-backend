@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Customer\app\Models;
+namespace modules\Customer\app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
