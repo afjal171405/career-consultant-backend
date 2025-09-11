@@ -3,11 +3,13 @@
 namespace modules\Customer\app\Http\Controllers\auth;
 
 
+use App\Enum\SmsEnum;
 use App\Http\Controllers\Controller;
 use App\services\SmsService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Modules\Admin\Http\Resources\CustomerDetailResource;
+use modules\Customer\app\Http\Resources\CustomerDetailResource;
 use modules\Customer\app\Models\Customer;
 
 class AuthController extends Controller
@@ -39,7 +41,11 @@ class AuthController extends Controller
             ]);
         }
         //TODO: send token
-        $token = $customer->createToken('Personal Access Token')->accessToken;
+        $tokenResult = $customer->createToken('auth_token');
+        $token = $tokenResult->plainTextToken;
+
+        $tokenResult->accessToken->expires_at = Carbon::now()->addWeeks(2);
+        $tokenResult->accessToken->save();
 
 
         return response([
@@ -53,4 +59,52 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged Out Successfully']);
     }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'mobile_number' => 'required|integer',
+            'password' => 'required|string|min:6'
+        ]);
+
+        $customer = Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile_number' => $request->mobile_number,
+            'password' => Hash::make($request->password)
+        ]);
+
+        $customer->save();
+
+        return $this->reportSuccess('customer created successfully');
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $mobile = $request->mobile_number;
+        $request->validate([
+            'mobile' => 'required|exists:users,mobile_number',
+        ],
+            [
+                'mobile.exists' => 'The provided mobile number does not exist in our records',
+            ]
+        );
+
+        // Save OTP to the user record or a separate table
+        $customer = Customer::where('mobile_number', $mobile)->first();
+        if (!$customer) {
+            return $this->reportError('Customer not found');
+        }
+
+        $this->smsService->sendSmsToken(
+            smsType: SmsEnum::SMS_TYPE['FORGOT_PASSWORD'],
+            mobileNumber: $request->mobile_number,
+            userType: Customer::class,
+            userId: $customer->id
+        );
+        return $this->reportSuccess('OTP sent successfully');
+    }
+
 }

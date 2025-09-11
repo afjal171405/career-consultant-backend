@@ -81,7 +81,7 @@ class  Customer extends Authenticatable
 ;
     }
 
-    protected $fillable = ['name','email','phone_number','password','extra' ];
+    protected $fillable = ['name','email','mobile_number','password','extra' ];
 
     protected $casts = [
         'extra' => 'array'

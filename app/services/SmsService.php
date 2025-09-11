@@ -5,7 +5,7 @@ namespace App\services;
 use App\Enum\SmsEnum;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Modules\Customer\app\Models\SmsLog;
+use modules\Admin\app\Models\SmsLog;
 
 class SmsService
 {
